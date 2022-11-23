@@ -21,10 +21,7 @@ import technology.tabula.detectors.DetectionAlgorithm;
 import technology.tabula.detectors.NurminenDetectionAlgorithm;
 import technology.tabula.extractors.BasicExtractionAlgorithm;
 import technology.tabula.extractors.SpreadsheetExtractionAlgorithm;
-import technology.tabula.writers.CSVWriter;
-import technology.tabula.writers.JSONWriter;
-import technology.tabula.writers.TSVWriter;
-import technology.tabula.writers.Writer;
+import technology.tabula.writers.*;
 
 
 public class CommandLineApp {
@@ -459,18 +456,9 @@ public class CommandLineApp {
     }
 
     private void writeTables(List<Table> tables, Appendable out) throws IOException {
-        Writer writer = null;
-        switch (outputFormat) {
-            case CSV:
-                writer = new CSVWriter();
-                break;
-            case JSON:
-                writer = new JSONWriter();
-                break;
-            case TSV:
-                writer = new TSVWriter();
-                break;
-        }
+        WriterCreator writerCreator = null;
+        Writer writer = writerCreator.createWriter(outputFormat);
+
         writer.write(out, tables);
     }
 
@@ -488,21 +476,6 @@ public class CommandLineApp {
                 break;
         }
         return pdfFile.getPath().replaceFirst("(\\.pdf|)$", extension);
-    }
-
-    private enum OutputFormat {
-        CSV,
-        TSV,
-        JSON;
-
-        static String[] formatNames() {
-            OutputFormat[] values = OutputFormat.values();
-            String[] rv = new String[values.length];
-            for (int i = 0; i < values.length; i++) {
-                rv[i] = values[i].name();
-            }
-            return rv;
-        }
     }
 
     private enum ExtractionMethod {
