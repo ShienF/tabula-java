@@ -16,6 +16,7 @@ import org.apache.pdfbox.cos.COSName;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImage;
+import org.apache.pdfbox.pdmodel.graphics.state.PDGraphicsState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -89,7 +90,8 @@ class ObjectExtractorStreamEngine extends PDFGraphicsStreamEngine {
     public void endPath() {
         if (clipWindingRule != -1) {
             currentPath.setWindingRule(clipWindingRule);
-            getGraphicsState().intersectClippingPath(currentPath);
+            PDGraphicsState graphicsState = getGraphicsState();
+            graphicsState.intersectClippingPath(currentPath);
             clipWindingRule = -1;
         }
         currentPath.reset();
@@ -185,6 +187,9 @@ class ObjectExtractorStreamEngine extends PDFGraphicsStreamEngine {
                     line = getLineBetween(endPoint, last_move, pointComparator);
                     verifyLineIntersectsClipping(line);
                     break;
+                default:
+                    System.out.println("Other current path segment is skipped.");
+                    break;
             }
             startPoint = endPoint;
         }
@@ -242,8 +247,10 @@ class ObjectExtractorStreamEngine extends PDFGraphicsStreamEngine {
     }
 
     public Rectangle2D currentClippingPath() {
-        Shape currentClippingPath = getGraphicsState().getCurrentClippingPath();
-        Shape transformedClippingPath = getPageTransform().createTransformedShape(currentClippingPath);
+        PDGraphicsState graphicsState = getGraphicsState();
+        Shape currentClippingPath = graphicsState.getCurrentClippingPath();
+        AffineTransform pageTransform = getPageTransform();
+        Shape transformedClippingPath = pageTransform.createTransformedShape(currentClippingPath);
         return transformedClippingPath.getBounds2D();
     }
 
