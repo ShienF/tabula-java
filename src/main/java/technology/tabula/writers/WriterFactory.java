@@ -1,7 +1,7 @@
 package technology.tabula.writers;
 import technology.tabula.OutputFormat;
 
-public class WriterCreator {
+public class WriterFactory {
     public Writer createWriter(OutputFormat outputFormat) {
         Writer writer = null;
         switch (outputFormat) {

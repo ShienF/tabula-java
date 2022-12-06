@@ -456,7 +456,7 @@ public class CommandLineApp {
     }
 
     private void writeTables(List<Table> tables, Appendable out) throws IOException {
-        WriterCreator writerCreator = null;
+        WriterFactory writerCreator = null;
         Writer writer = writerCreator.createWriter(outputFormat);
 
         writer.write(out, tables);
