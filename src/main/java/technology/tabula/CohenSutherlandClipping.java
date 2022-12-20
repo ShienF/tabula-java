@@ -14,6 +14,9 @@ package technology.tabula;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.Line2D;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Implements the well known Cohen Sutherland line
  * clipping algorithm (line against clip rectangle).
@@ -70,11 +73,25 @@ public final class CohenSutherlandClipping {
         Point point2 = new Point(line.getX2(), line.getY2());
         Point outsidePoint = new Point(0d, 0d);
 
+        List<Point> points = this.setPositionAndRegion(point1, point2, outsidePoint);
+        if (points.isEmpty()) {
+            return false;
+        }
+        point1 = points.get(0);
+        point2 = points.get(1);
+
+        line.setLine(point1.x, point1.y, point2.x, point2.y);
+        return true;
+    }
+
+    private List<Point> setPositionAndRegion(Point point1, Point point2, Point outsidePoint) {
         boolean lineIsVertical = (point1.x == point2.x);
         double lineSlope = lineIsVertical ? 0d : (point2.y-point1.y)/(point2.x-point1.x);
 
+        List<Point> points = new ArrayList<>();
+
         while (point1.region != INSIDE || point2.region != INSIDE) {
-            if ((point1.region & point2.region) != 0) return false;
+            if ((point1.region & point2.region) != 0) return points;
 
             outsidePoint.region = (point1.region == INSIDE) ? point2.region : point1.region;
 
@@ -89,14 +106,14 @@ public final class CohenSutherlandClipping {
             else if ((outsidePoint.region & BOTTOM) != 0) {
                 outsidePoint.y = yMin;
                 outsidePoint.x = lineIsVertical
-                    ? point1.x
-                    : delta(outsidePoint.y, point1.y)/lineSlope + point1.x;
+                        ? point1.x
+                        : delta(outsidePoint.y, point1.y)/lineSlope + point1.x;
             }
             else if ((outsidePoint.region & TOP) != 0) {
                 outsidePoint.y = yMax;
                 outsidePoint.x = lineIsVertical
-                    ? point1.x
-                    : delta(outsidePoint.y, point1.y)/lineSlope + point1.x;
+                        ? point1.x
+                        : delta(outsidePoint.y, point1.y)/lineSlope + point1.x;
             }
 
             if (outsidePoint.isInTheSameRegionAs(point1)) {
@@ -106,10 +123,11 @@ public final class CohenSutherlandClipping {
                 point2.setPositionAndRegion(outsidePoint.x, outsidePoint.y);
             }
         }
-        line.setLine(point1.x, point1.y, point2.x, point2.y);
-        return true;
-    }
 
+        points.add(point1);
+        points.add(point2);
+        return points;
+    }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     private static double delta(double value1, double value2) {
         return (Math.abs(value1 - value2) < MINIMUM_DELTA) ? 0 : (value1 - value2);
