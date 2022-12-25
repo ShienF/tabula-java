@@ -177,7 +177,6 @@ public class TextElement extends Rectangle implements HasText {
             // Estimate the expected width of the space based on the
             // space character with some margin.
             wordSpacing = chr.getWidthOfSpace();
-            deltaSpace = 0;
             if (java.lang.Float.isNaN(wordSpacing) || wordSpacing == 0) {
                 deltaSpace = java.lang.Float.MAX_VALUE;
             } else if (lastWordSpacing < 0) {
@@ -209,7 +208,6 @@ public class TextElement extends Rectangle implements HasText {
             // new line?
             sameLine = true;
             if (!Utils.overlap(chr.getBottom(), chr.height, maxYForLine, maxHeightForLine)) {
-                endOfLastTextX = -1;
                 expectedStartOfNextWordX = -java.lang.Float.MAX_VALUE;
                 maxYForLine = -java.lang.Float.MAX_VALUE;
                 maxHeightForLine = -1;
