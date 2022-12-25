@@ -111,24 +111,12 @@ public class TextStripper extends PDFTextStripper {
       float glyphHeight = bbox.getHeight() / 2;
 
       // sometimes the bbox has very high values, but CapHeight is OK
+      // PDFBOX-3464, PDFBOX-448:
+      // sometimes even CapHeight has very high value, but Ascent and Descent are ok
       PDFontDescriptor fontDescriptor = font.getFontDescriptor();
       if (fontDescriptor != null)
       {
-          float capHeight = fontDescriptor.getCapHeight();
-          if (Float.compare(capHeight, 0) != 0 &&
-              (capHeight < glyphHeight || Float.compare(glyphHeight, 0) == 0))
-          {
-              glyphHeight = capHeight;
-          }
-          // PDFBOX-3464, PDFBOX-448:
-          // sometimes even CapHeight has very high value, but Ascent and Descent are ok
-          float ascent = fontDescriptor.getAscent();
-          float descent = fontDescriptor.getDescent();
-          if (ascent > 0 && descent < 0 &&
-              ((ascent - descent) / 2 < glyphHeight || Float.compare(glyphHeight, 0) == 0))
-          {
-              glyphHeight = (ascent - descent) / 2;
-          }
+          glyphHeight = countGlyphHeightIfTooHigh(fontDescriptor, glyphHeight);
       }
 
       // transformPoint from glyph space -> text space
@@ -155,6 +143,25 @@ public class TextStripper extends PDFTextStripper {
             printable |= !Character.isISOControl(c) && block != null && block != Character.UnicodeBlock.SPECIALS;
         }
         return printable;
+    }
+
+    private float countGlyphHeightIfTooHigh(PDFontDescriptor fontDescriptor, float glyphHeight) {
+        float capHeight = fontDescriptor.getCapHeight();
+        if (Float.compare(capHeight, 0) != 0 &&
+                (capHeight < glyphHeight || Float.compare(glyphHeight, 0) == 0))
+        {
+            return capHeight;
+        }
+
+        float ascent = fontDescriptor.getAscent();
+        float descent = fontDescriptor.getDescent();
+        if (ascent > 0 && descent < 0 &&
+                ((ascent - descent) / 2 < glyphHeight || Float.compare(glyphHeight, 0) == 0))
+        {
+            return (ascent - descent) / 2;
+        }
+
+        return glyphHeight;
     }
 
     public List<TextElement> getTextElements() {
