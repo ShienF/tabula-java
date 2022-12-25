@@ -163,38 +163,20 @@ public class TextElement extends Rectangle implements HasText {
             }
 
             // is there any vertical ruling that goes across chr and prevChar?
-            acrossVerticalRuling = false;
-            for (Ruling r : verticalRulings) {
-                if (
-                        (verticallyOverlapsRuling(prevChar, r) && verticallyOverlapsRuling(chr, r)) &&
-                                (prevChar.x < r.getPosition() && chr.x > r.getPosition()) || (prevChar.x > r.getPosition() && chr.x < r.getPosition())
-                        ) {
-                    acrossVerticalRuling = true;
-                    break;
-                }
-            }
+            acrossVerticalRuling = isAcrossVerticalRuling(verticalRulings, chr, prevChar);
 
             // Estimate the expected width of the space based on the
             // space character with some margin.
             wordSpacing = chr.getWidthOfSpace();
-            if (java.lang.Float.isNaN(wordSpacing) || wordSpacing == 0) {
-                deltaSpace = java.lang.Float.MAX_VALUE;
-            } else if (lastWordSpacing < 0) {
-                deltaSpace = wordSpacing * 0.5f; // 0.5 == spacing tolerance
-            } else {
-                deltaSpace = ((wordSpacing + lastWordSpacing) / 2.0f) * 0.5f;
-            }
+            deltaSpace = countDeltaSpace(wordSpacing, lastWordSpacing);
+
 
             // Estimate the expected width of the space based on the
             // average character width with some margin. This calculation does not
             // make a true average (average of averages) but we found that it gave the
             // best results after numerous experiments. Based on experiments we also found that
             // .3 worked well.
-            if (previousAveCharWidth < 0) {
-                averageCharWidth = (float) (chr.getWidth() / chr.getText().length());
-            } else {
-                averageCharWidth = (float) ((previousAveCharWidth + (chr.getWidth() / chr.getText().length())) / 2.0f);
-            }
+            averageCharWidth = countAverageCharWidth(chr , previousAveCharWidth);
             deltaCharWidth = averageCharWidth * AVERAGE_CHAR_TOLERANCE;
 
             // Compares the values obtained by the average method and the wordSpacing method and picks
@@ -270,6 +252,37 @@ public class TextElement extends Rectangle implements HasText {
 
     private static boolean verticallyOverlapsRuling(TextElement te, Ruling r) {
         return Math.max(0, Math.min(te.getBottom(), r.getY2()) - Math.max(te.getTop(), r.getY1())) > 0;
+    }
+
+    private static boolean isAcrossVerticalRuling(List<Ruling> verticalRulings, TextElement chr, TextElement prevChar) {
+        for (Ruling r : verticalRulings) {
+            if (
+                    (verticallyOverlapsRuling(prevChar, r) && verticallyOverlapsRuling(chr, r)) &&
+                            (prevChar.x < r.getPosition() && chr.x > r.getPosition()) || (prevChar.x > r.getPosition() && chr.x < r.getPosition())
+            ) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static float countDeltaSpace(float wordSpacing, float lastWordSpacing) {
+        if (java.lang.Float.isNaN(wordSpacing) || wordSpacing == 0) {
+            return java.lang.Float.MAX_VALUE;
+        } else if (lastWordSpacing < 0) {
+            return wordSpacing * 0.5f; // 0.5 == spacing tolerance
+        } else {
+            return ((wordSpacing + lastWordSpacing) / 2.0f) * 0.5f;
+        }
+    }
+
+    private static float countAverageCharWidth(TextElement chr , float previousAveCharWidth) {
+        if (previousAveCharWidth < 0) {
+            return (float) (chr.getWidth() / chr.getText().length());
+        } else {
+            return (float) ((previousAveCharWidth + (chr.getWidth() / chr.getText().length())) / 2.0f);
+        }
     }
 
 }
