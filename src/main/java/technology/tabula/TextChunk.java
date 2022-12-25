@@ -328,7 +328,7 @@ public class TextChunk extends RectangularTextContainer<TextElement> {
             return lines;
         }
 
-        float bbwidth = Rectangle.boundingBoxOf(textChunks).width;
+        float bbWidth = Rectangle.boundingBoxOf(textChunks).width;
 
         Line l = new Line();
         l.addTextChunk(textChunks.get(0));
@@ -338,7 +338,7 @@ public class TextChunk extends RectangularTextContainer<TextElement> {
         Line last = lines.get(lines.size() - 1);
         for (TextChunk te : textChunks) {
             if (last.verticalOverlapRatio(te) < 0.1) {
-                if (last.width / bbwidth > 0.9 && TextChunk.allSameChar(last.getTextElements())) {
+                if (last.width / bbWidth > 0.9 && TextChunk.allSameChar(last.getTextElements())) {
                     lines.remove(lines.size() - 1);
                 }
                 lines.add(new Line());
@@ -347,7 +347,7 @@ public class TextChunk extends RectangularTextContainer<TextElement> {
             last.addTextChunk(te);
         }
 
-        if (last.width / bbwidth > 0.9 && TextChunk.allSameChar(last.getTextElements())) {
+        if (last.width / bbWidth > 0.9 && TextChunk.allSameChar(last.getTextElements())) {
             lines.remove(lines.size() - 1);
         }
 
