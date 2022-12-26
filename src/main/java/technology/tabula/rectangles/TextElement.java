@@ -1,9 +1,11 @@
-package technology.tabula;
+package technology.tabula.rectangles;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.pdfbox.pdmodel.font.PDFont;
+import technology.tabula.Ruling;
+import technology.tabula.Utils;
 
 @SuppressWarnings("serial")
 public class TextElement extends Rectangle implements HasText {

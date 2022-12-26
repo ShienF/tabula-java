@@ -1,4 +1,4 @@
-package technology.tabula;
+package technology.tabula.rectangles;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -45,7 +45,7 @@ public class Rectangle extends Rectangle2D.Float {
 	}
 
 	// I'm bad at Java and need this for fancy sorting in
-	// technology.tabula.TextChunk.
+	// technology.tabula.rectangles.TextChunk.
 	public int isLtrDominant() {
 		return 0;
 	}

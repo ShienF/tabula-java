@@ -7,6 +7,8 @@ import org.apache.pdfbox.pdmodel.font.PDFontDescriptor;
 import org.apache.pdfbox.pdmodel.font.PDType3Font;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.pdfbox.text.TextPosition;
+import technology.tabula.rectangles.RectangleSpatialIndex;
+import technology.tabula.rectangles.TextElement;
 
 import java.io.IOException;
 import java.util.ArrayList;

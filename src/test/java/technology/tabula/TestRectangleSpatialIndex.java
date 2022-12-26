@@ -3,6 +3,8 @@ package technology.tabula;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import technology.tabula.rectangles.Rectangle;
+import technology.tabula.rectangles.RectangleSpatialIndex;
 
 public class TestRectangleSpatialIndex {
 

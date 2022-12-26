@@ -21,6 +21,10 @@ import technology.tabula.detectors.DetectionAlgorithm;
 import technology.tabula.detectors.NurminenDetectionAlgorithm;
 import technology.tabula.extractors.BasicExtractionAlgorithm;
 import technology.tabula.extractors.SpreadsheetExtractionAlgorithm;
+import technology.tabula.rectangles.Page;
+import technology.tabula.rectangles.PageIterator;
+import technology.tabula.rectangles.Rectangle;
+import technology.tabula.rectangles.Table;
 import technology.tabula.writers.*;
 
 

@@ -1,4 +1,4 @@
-package technology.tabula;
+package technology.tabula.rectangles;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,6 +6,8 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
+import technology.tabula.Ruling;
+import technology.tabula.Utils;
 import technology.tabula.extractors.ExtractionAlgorithm;
 
 @SuppressWarnings("serial")
@@ -40,7 +42,7 @@ public class TableWithRulingLines extends Table {
             Cell cell = rowCells.next();
             List<List<Cell>> others = rowsOfCells(
                     si.contains(
-                            new Rectangle(cell.getBottom(), si.getBounds().getLeft(), cell.getLeft() - si.getBounds().getLeft(), 
+                            new Rectangle(cell.getBottom(), si.getBounds().getLeft(), cell.getLeft() - si.getBounds().getLeft(),
                                     si.getBounds().getBottom() - cell.getBottom())
                             ));
             int startColumn = 0;

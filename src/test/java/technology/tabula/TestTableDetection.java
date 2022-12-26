@@ -23,6 +23,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import technology.tabula.detectors.NurminenDetectionAlgorithm;
+import technology.tabula.rectangles.Page;
+import technology.tabula.rectangles.PageIterator;
+import technology.tabula.rectangles.Rectangle;
 
 /**
  * Created by matt on 2015-12-14.

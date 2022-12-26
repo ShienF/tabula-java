@@ -1,4 +1,4 @@
-package technology.tabula;
+package technology.tabula.rectangles;
 
 public class PageDims {
     private final float top;

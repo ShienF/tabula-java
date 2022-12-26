@@ -1,13 +1,12 @@
-package technology.tabula;
+package technology.tabula.rectangles;
 
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
+import technology.tabula.*;
+import technology.tabula.ObjectExtractorStreamEngine;
 
 import static java.lang.Float.compare;
 import static java.util.Collections.min;
@@ -86,7 +85,7 @@ public class Page extends Rectangle {
     */
     public Page(float top, float left, float width, float height, int rotation, int number, PDPage pdPage, PDDocument doc,
                 ObjectExtractorStreamEngine streamEngine, TextStripper textStripper) {
-      this(top, left, width, height, rotation, number, pdPage, doc, textStripper.getTextElements(), streamEngine.rulings);
+      this(top, left, width, height, rotation, number, pdPage, doc, textStripper.getTextElements(), streamEngine.getRulings());
       this.minCharWidth = textStripper.getMinCharWidth();
       this.minCharHeight = textStripper.getMinCharHeight();
       this.spatialIndex = textStripper.getSpatialIndex();
@@ -237,7 +236,7 @@ public class Page extends Rectangle {
         List<Ruling> rulings = this.rulings.getRulings();
 
         if (rulings != null && !rulings.isEmpty()) {
-            Utils.snapPoints(rulings, minCharWidth, minCharHeight);;
+            Utils.snapPoints(rulings, minCharWidth, minCharHeight);
         }
         return rulings;
     }

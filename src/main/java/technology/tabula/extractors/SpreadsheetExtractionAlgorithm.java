@@ -1,6 +1,7 @@
 package technology.tabula.extractors;
 
 import technology.tabula.*;
+import technology.tabula.rectangles.*;
 
 import java.awt.geom.Point2D;
 import java.util.*;

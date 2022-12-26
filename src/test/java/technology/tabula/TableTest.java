@@ -3,6 +3,8 @@ package technology.tabula;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import technology.tabula.rectangles.Table;
+import technology.tabula.rectangles.TextChunk;
 
 public class TableTest {
 

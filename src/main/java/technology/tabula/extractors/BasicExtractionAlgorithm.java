@@ -6,13 +6,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Arrays;
 
-import technology.tabula.Line;
-import technology.tabula.Page;
-import technology.tabula.Rectangle;
+import technology.tabula.rectangles.Line;
+import technology.tabula.rectangles.Page;
+import technology.tabula.rectangles.Rectangle;
 import technology.tabula.Ruling;
-import technology.tabula.Table;
-import technology.tabula.TextChunk;
-import technology.tabula.TextElement;
+import technology.tabula.rectangles.Table;
+import technology.tabula.rectangles.TextChunk;
+import technology.tabula.rectangles.TextElement;
 
 public class BasicExtractionAlgorithm implements ExtractionAlgorithm {
     

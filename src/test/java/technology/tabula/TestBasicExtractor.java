@@ -14,6 +14,10 @@ import org.apache.commons.csv.CSVRecord;
 import org.junit.Test;
 
 import technology.tabula.extractors.BasicExtractionAlgorithm;
+import technology.tabula.rectangles.Page;
+import technology.tabula.rectangles.Rectangle;
+import technology.tabula.rectangles.RectangularTextContainer;
+import technology.tabula.rectangles.Table;
 import technology.tabula.writers.CSVWriter;
 
 public class TestBasicExtractor {

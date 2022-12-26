@@ -7,6 +7,9 @@ import java.util.List;
 
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.junit.Test;
+import technology.tabula.rectangles.Line;
+import technology.tabula.rectangles.TextChunk;
+import technology.tabula.rectangles.TextElement;
 
 public class TestLine {
 
@@ -65,7 +68,7 @@ public class TestLine {
 		line.addTextChunk(0, tChunk);
 		line.addTextChunk(0, tChunk);
 		
-		assertEquals("technology.tabula.Line[x=0.0,y=0.0,w=0.0,h=0.0,bottom=0.000000,right=0.000000,chunks='testtest', ]", line.toString());
+		assertEquals("technology.tabula.rectangles.Line[x=0.0,y=0.0,w=0.0,h=0.0,bottom=0.000000,right=0.000000,chunks='testtest', ]", line.toString());
 	}
 
 }

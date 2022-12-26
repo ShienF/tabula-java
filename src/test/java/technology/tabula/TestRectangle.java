@@ -11,6 +11,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
+import technology.tabula.rectangles.Rectangle;
 
 public class TestRectangle {
 

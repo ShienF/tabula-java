@@ -1,4 +1,4 @@
-package technology.tabula;
+package technology.tabula.rectangles;
 
 import java.util.ArrayList;
 import java.util.List;

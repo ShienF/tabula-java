@@ -1,5 +1,8 @@
 package technology.tabula;
 
+import technology.tabula.rectangles.Page;
+import technology.tabula.rectangles.Rectangle;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

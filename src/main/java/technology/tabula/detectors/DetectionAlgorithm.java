@@ -1,7 +1,7 @@
 package technology.tabula.detectors;
 
-import technology.tabula.Page;
-import technology.tabula.Rectangle;
+import technology.tabula.rectangles.Page;
+import technology.tabula.rectangles.Rectangle;
 
 import java.util.List;
 

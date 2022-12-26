@@ -2,6 +2,7 @@ package technology.tabula;
 
 import org.junit.Before;
 import org.junit.Test;
+import technology.tabula.rectangles.Rectangle;
 
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;

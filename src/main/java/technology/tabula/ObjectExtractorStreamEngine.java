@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 
 import static java.awt.geom.PathIterator.*;
 
-class ObjectExtractorStreamEngine extends PDFGraphicsStreamEngine {
+public class ObjectExtractorStreamEngine extends PDFGraphicsStreamEngine {
 
     protected List<Ruling> rulings;
     private AffineTransform pageTransform;
@@ -252,6 +252,10 @@ class ObjectExtractorStreamEngine extends PDFGraphicsStreamEngine {
         AffineTransform pageTransform = getPageTransform();
         Shape transformedClippingPath = pageTransform.createTransformedShape(currentClippingPath);
         return transformedClippingPath.getBounds2D();
+    }
+
+    public List<Ruling> getRulings() {
+        return this.rulings;
     }
 
     // TODO: repeated in SpreadsheetExtractionAlgorithm.

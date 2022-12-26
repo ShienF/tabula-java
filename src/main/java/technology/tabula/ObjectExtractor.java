@@ -4,6 +4,10 @@ import java.io.IOException;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
+import technology.tabula.rectangles.Page;
+import technology.tabula.rectangles.PageDims;
+import technology.tabula.rectangles.PageIterator;
+import technology.tabula.rectangles.Rectangle;
 
 public class ObjectExtractor implements java.io.Closeable {
 
@@ -14,7 +18,7 @@ public class ObjectExtractor implements java.io.Closeable {
     }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    protected Page extractPage(Integer pageNumber) throws IOException {
+    public Page extractPage(Integer pageNumber) throws IOException {
         if (pageNumber > pdfDocument.getNumberOfPages() || pageNumber < 1) {
             throw new java.lang.IndexOutOfBoundsException("Page number does not exist.");
         }

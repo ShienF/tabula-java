@@ -2,8 +2,8 @@ package technology.tabula.extractors;
 
 import java.util.List;
 
-import technology.tabula.Page;
-import technology.tabula.Table;
+import technology.tabula.rectangles.Page;
+import technology.tabula.rectangles.Table;
 
 public interface ExtractionAlgorithm {
 

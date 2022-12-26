@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.junit.Assert;
 import org.junit.Test;
+import technology.tabula.rectangles.TextChunk;
+import technology.tabula.rectangles.TextElement;
 
 public class TestTextElement {
 	

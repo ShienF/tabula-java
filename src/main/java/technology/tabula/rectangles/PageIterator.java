@@ -1,4 +1,7 @@
-package technology.tabula;
+package technology.tabula.rectangles;
+
+import technology.tabula.ObjectExtractor;
+import technology.tabula.rectangles.Page;
 
 import java.io.IOException;
 import java.util.Iterator;

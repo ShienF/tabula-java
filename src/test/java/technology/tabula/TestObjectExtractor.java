@@ -9,6 +9,9 @@ import java.util.List;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.junit.Test;
+import technology.tabula.rectangles.Page;
+import technology.tabula.rectangles.PageIterator;
+import technology.tabula.rectangles.TextElement;
 
 public class TestObjectExtractor {
 

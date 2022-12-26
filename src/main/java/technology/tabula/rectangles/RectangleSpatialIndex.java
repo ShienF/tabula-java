@@ -1,10 +1,12 @@
-package technology.tabula;
+package technology.tabula.rectangles;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.locationtech.jts.geom.Envelope;
 import org.locationtech.jts.index.strtree.STRtree;
+import technology.tabula.Utils;
+import technology.tabula.rectangles.Rectangle;
 
 public class RectangleSpatialIndex<T extends Rectangle> {
     

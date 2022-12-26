@@ -12,6 +12,8 @@ import com.google.gson.JsonArray;
 
 import technology.tabula.extractors.BasicExtractionAlgorithm;
 import technology.tabula.extractors.SpreadsheetExtractionAlgorithm;
+import technology.tabula.rectangles.Page;
+import technology.tabula.rectangles.Table;
 import technology.tabula.writers.CSVWriter;
 import technology.tabula.writers.JSONWriter;
 import technology.tabula.writers.TSVWriter;

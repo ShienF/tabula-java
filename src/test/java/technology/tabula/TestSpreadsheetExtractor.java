@@ -20,6 +20,10 @@ import org.apache.commons.csv.CSVRecord;
 import org.junit.Test;
 
 import technology.tabula.extractors.SpreadsheetExtractionAlgorithm;
+import technology.tabula.rectangles.Cell;
+import technology.tabula.rectangles.Page;
+import technology.tabula.rectangles.Rectangle;
+import technology.tabula.rectangles.Table;
 import technology.tabula.writers.CSVWriter;
 import technology.tabula.writers.JSONWriter;
 
