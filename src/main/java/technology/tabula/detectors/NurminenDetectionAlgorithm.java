@@ -445,11 +445,16 @@ public class NurminenDetectionAlgorithm implements DetectionAlgorithm {
         }
 
         // add a bit of padding since the halved horizontal lines are a little fuzzy anyways
+        table = setTablePadding(table);
+
+        return table;
+    }
+
+    Rectangle setTablePadding(Rectangle table) {
         table.setTop((float) Math.floor(table.getTop()) - TABLE_PADDING_AMOUNT);
         table.setBottom((float) Math.ceil(table.getBottom()) + TABLE_PADDING_AMOUNT);
         table.setLeft((float) Math.floor(table.getLeft()) - TABLE_PADDING_AMOUNT);
         table.setRight((float) Math.ceil(table.getRight()) + TABLE_PADDING_AMOUNT);
-
         return table;
     }
 
