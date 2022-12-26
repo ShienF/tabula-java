@@ -83,9 +83,9 @@ public final class QuickSort {
 		swap(list, p, end - 1);
 
 		while (l < h) {
-			     if (cmp.compare(list.get(l), piv) <= 0) l++;
+			if (cmp.compare(list.get(l), piv) <= 0) l++;
 			else if (cmp.compare(piv, list.get(h)) <= 0) h--;
-			else                                         swap(list, l, h);
+			else swap(list, l, h);
 		}
 		int idx = h;
 		if (cmp.compare(list.get(h), piv) < 0) idx++;

@@ -214,7 +214,8 @@ public class Utils {
 
         for (Point2D p : points.subList(1, points.size() - 1)) {
             List<Point2D> last = groupedPoints.get(groupedPoints.size() - 1);
-            if (Math.abs(p.getX() - last.get(0).getX()) < xThreshold) {
+            Point2D firstOfLastPoint = last.get(0);
+            if (Math.abs(p.getX() - firstOfLastPoint.getX()) < xThreshold) {
                 groupedPoints.get(groupedPoints.size() - 1).add(p);
             } else {
                 groupedPoints.add(new ArrayList<>(Arrays.asList(new Point2D[]{p})));
@@ -268,7 +269,8 @@ public class Utils {
         // finally, modify lines
         for (Map.Entry<Line2D.Float, Point2D[]> ltp : linesToPoints.entrySet()) {
             Point2D[] p = ltp.getValue();
-            ltp.getKey().setLine(p[0], p[1]);
+            Line2D.Float key = ltp.getKey();
+            key.setLine(p[0], p[1]);
         }
     }
 
