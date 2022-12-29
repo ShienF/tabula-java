@@ -25,7 +25,7 @@ public class Table extends Rectangle {
 	private int colCount = 0;
 	private int pageNumber = 0;
 
-	/* visible for testing */ final TreeMap<CellPosition, RectangularTextContainer> cells = new TreeMap<>();
+	/* visible for testing */ public final TreeMap<CellPosition, RectangularTextContainer> cells = new TreeMap<>();
 
 	public int getRowCount() { return rowCount; }
 	public int getColCount() { return colCount; }
